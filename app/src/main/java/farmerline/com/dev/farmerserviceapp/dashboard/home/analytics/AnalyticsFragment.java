@@ -71,6 +71,7 @@ public class AnalyticsFragment extends BaseFragment implements AnalyticsFragment
         ButterKnife.bind(this,getActivity());
         rlAddLocation.setOnClickListener(this);
         tvAddLocation.setOnClickListener(this);
+        presenter.setView(this);
         presenter.getLocation();
         mapViewListItemViewOnCreate(savedInstanceState);
         mapView.setOnClickListener(new View.OnClickListener() {
@@ -79,8 +80,6 @@ public class AnalyticsFragment extends BaseFragment implements AnalyticsFragment
                 navigationPresenter.addFragment(MapFragment.newInstance());
             }
         });
-
-
 
     }
 
@@ -91,7 +90,6 @@ public class AnalyticsFragment extends BaseFragment implements AnalyticsFragment
         super.onResume();
         presenter.setView(this);
         presenter.getLocation();
-        mapViewListItemViewOnResume();
     }
 
     @Override
@@ -126,7 +124,6 @@ public class AnalyticsFragment extends BaseFragment implements AnalyticsFragment
 
             }
         });
-        mapViewListItemViewOnResume();
 
         mapView.setOnClickListener(new View.OnClickListener() {
             @Override

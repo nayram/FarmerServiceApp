@@ -40,6 +40,7 @@ public class AnalyticsFragmentPresenter implements AnalyticsFragmentMVP.Presente
             if (view !=null)
             view.setLocation(latLng);
         }else {
+            if (view !=null)
             view.showSnackBar("Yet to set Location");
         }
     }
