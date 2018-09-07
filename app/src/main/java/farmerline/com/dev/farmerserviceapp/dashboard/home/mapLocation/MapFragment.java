@@ -181,8 +181,8 @@ public class MapFragment extends BaseFragment implements MapFragmentMVP.View,OnM
         {
             case R.id.btnSaveLocation:
                     presenter.saveLocation();
-                    //navigationPresenter.removeFragment();
-                    showSavingDialog();
+                    navigationPresenter.removeFragment();
+                    //showSavingDialog();
                    // showSecondToast();
                 break;
         }

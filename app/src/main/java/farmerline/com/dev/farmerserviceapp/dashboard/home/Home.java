@@ -123,15 +123,17 @@ public class Home extends AppCompatActivity
 
     @Override
     public void removeFragment() {
+
         int numOfFrag= getSupportFragmentManager().getFragments().size();
-        if (numOfFrag>0){
-            getSupportFragmentManager().addOnBackStackChangedListener(
+        if (numOfFrag>1){
+            getSupportFragmentManager().popBackStack();
+            /*getSupportFragmentManager().addOnBackStackChangedListener(
                     new FragmentManager.OnBackStackChangedListener() {
                         public void onBackStackChanged() {
                             // Update your UI here.
                             Log.d(Constant.TAG,"On back pressed");
                         }
-                    });
+                    });*/
         }else{
             finish();
         }

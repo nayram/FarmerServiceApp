@@ -94,6 +94,7 @@ public class LoginActivityPresenter  implements LoginActivityMVP.Presenter{
 
             model.saveUser(userModel);
             view.showSnackBar("Signed In");
+            view.startActivity();
 
 
         } catch (ApiException e) {
@@ -193,6 +194,7 @@ public class LoginActivityPresenter  implements LoginActivityMVP.Presenter{
 
                         model.saveUser(userModel);
                         view.showSnackBar("Signed In");
+                        view.startActivity();
 
                     } else {
                         // If sign in fails, display a message to the user.
@@ -275,6 +277,7 @@ public class LoginActivityPresenter  implements LoginActivityMVP.Presenter{
                             "linkedIn", "",image);
                     model.saveUser(userModel);
                     view.showSnackBar("Signed In");
+                    view.startActivity();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

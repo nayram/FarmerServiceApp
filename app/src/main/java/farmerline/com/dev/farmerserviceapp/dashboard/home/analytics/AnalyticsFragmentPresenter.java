@@ -18,7 +18,7 @@ public class AnalyticsFragmentPresenter implements AnalyticsFragmentMVP.Presente
 
     @Override
     public void setView(AnalyticsFragmentMVP.View view) {
-
+        this.view=view;
     }
 
     @Override

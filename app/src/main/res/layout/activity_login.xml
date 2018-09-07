@@ -11,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_vertical">
 
 
         <com.google.android.gms.common.SignInButton
@@ -35,9 +36,10 @@
 
         <Button
             android:id="@+id/btnLinkedIn"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="LinkedIn" />
+            android:layout_gravity="center_horizontal"
+            android:text="Sign in with LinkedIn" />
 
         <ProgressBar
             android:id="@+id/progressBar"

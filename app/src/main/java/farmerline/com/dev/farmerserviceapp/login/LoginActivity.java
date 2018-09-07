@@ -33,6 +33,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import farmerline.com.dev.farmerserviceapp.R;
+import farmerline.com.dev.farmerserviceapp.dashboard.home.Home;
 import farmerline.com.dev.farmerserviceapp.root.App;
 import farmerline.com.dev.farmerserviceapp.utils.Constant;
 
@@ -69,6 +70,8 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
 
         ButterKnife.bind(this);
 
+
+
         btnFacebook.setOnClickListener(this);
         btnGoogle.setOnClickListener(this);
         btnLinkedIn.setOnClickListener(this);
@@ -87,6 +90,7 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
             public void onSuccess(LoginResult loginResult) {
                 Log.d(Constant.TAG, "facebook:onSuccess:" + loginResult);
                 presenter.handleFacebookAccessToken(loginResult.getAccessToken());
+
 
             }
 
@@ -163,6 +167,12 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMVP
     @Override
     public LoginActivity getActivity() {
         return this;
+    }
+
+    @Override
+    public void startActivity() {
+        startActivity(new Intent(this,Home.class));
+        finish();
     }
 
     @Override

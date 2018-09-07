@@ -16,6 +16,7 @@ public interface LoginActivityMVP {
 
         void showSnackBar(String msg);
         LoginActivity getActivity();
+        void startActivity();
     }
 
     interface Presenter {

@@ -50,7 +50,7 @@ public class AnalyticsFragment extends BaseFragment implements AnalyticsFragment
 
     GoogleMap mMap;
 
-    private float DEFAULT_ZOOM=13;
+    private float DEFAULT_ZOOM=9;
 
 
     @Override
@@ -72,6 +72,13 @@ public class AnalyticsFragment extends BaseFragment implements AnalyticsFragment
         rlAddLocation.setOnClickListener(this);
         tvAddLocation.setOnClickListener(this);
         presenter.getLocation();
+        mapViewListItemViewOnCreate(savedInstanceState);
+        mapView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigationPresenter.addFragment(MapFragment.newInstance());
+            }
+        });
 
 
 
@@ -84,6 +91,7 @@ public class AnalyticsFragment extends BaseFragment implements AnalyticsFragment
         super.onResume();
         presenter.setView(this);
         presenter.getLocation();
+        mapViewListItemViewOnResume();
     }
 
     @Override
@@ -99,6 +107,7 @@ public class AnalyticsFragment extends BaseFragment implements AnalyticsFragment
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
+                showSnackBar("Map is ready");
                 mMap=googleMap;
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,DEFAULT_ZOOM));
 
@@ -106,9 +115,18 @@ public class AnalyticsFragment extends BaseFragment implements AnalyticsFragment
 
                 MarkerOptions markerOptions = new MarkerOptions().position(latLng)
                         .icon(icon);
+
                 mMap.addMarker(markerOptions);
+                mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(LatLng latLng) {
+                        navigationPresenter.addFragment(MapFragment.newInstance());
+                    }
+                });
+
             }
         });
+        mapViewListItemViewOnResume();
 
         mapView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +146,42 @@ public class AnalyticsFragment extends BaseFragment implements AnalyticsFragment
             case R.id.tvAddLocation:
                 navigationPresenter.addFragment(MapFragment.newInstance());
                 break;
+        }
+    }
+
+    public void mapViewListItemViewOnCreate(Bundle savedInstanceState) {
+        if (mapView != null) {
+            mapView.onCreate(savedInstanceState);
+        }
+    }
+
+    public void mapViewListItemViewOnResume() {
+        if (mapView != null) {
+            mapView.onResume();
+        }
+    }
+
+    public void mapViewListItemViewOnPause() {
+        if (mapView != null) {
+            mapView.onPause();
+        }
+    }
+
+    public void mapViewListItemViewOnDestroy() {
+        if (mapView != null) {
+            mapView.onDestroy();
+        }
+    }
+
+    public void mapViewListItemViewOnLowMemory() {
+        if (mapView != null) {
+            mapView.onLowMemory();
+        }
+    }
+
+    public void mapViewListItemViewOnSaveInstanceState(Bundle outState) {
+        if (mapView != null) {
+            mapView.onSaveInstanceState(outState);
         }
     }
 }
